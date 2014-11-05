@@ -1,14 +1,10 @@
-$(function() {
+// Dealing with window resizing event
 
+$(function() {
     $('#side-menu').metisMenu();
-
-});
-
-//Loads the correct sidebar on window load,
-//collapses the sidebar on window resize.
-// Sets the min-height of #page-wrapper to window size
-$(function() {
     $(window).bind("load resize", function() {
+
+        // 1. Bootstrap framework resizing
         topOffset = 50;
         width = (this.window.innerWidth > 0) ? this.window.innerWidth : this.screen.width;
         if (width < 768) {
@@ -25,6 +21,7 @@ $(function() {
             $("#page-wrapper").css("min-height", (height) + "px");
         }
 
+        // 2. Resize all the charts
         // for index main metrics
         if (typeof drawChildren != 'undefined') {
             drawChildren();
@@ -46,6 +43,28 @@ $(function() {
         if (typeof drawEducat != 'undefined') {
             drawEducat();
         }
+
+        // // draw map
+        // if (typeof loadMap != 'undefined') {
+        //     var mapwidth = $("#africachart").width();
+        //     var mapheight = width;
+        //     if (mapwidth >= 800) {
+        //         mapheight *= 0.42;
+        //     } else if (mapwidth >= 640) {
+        //         mapheight *= 0.54;
+        //     } else if (mapwidth >= 600){
+        //         mapheight *= 0.80;
+        //     } else {
+        //         mapheight *= 1.0;
+        //     }
+
+        //     $("#africachart").height(mapheight);
+
+        //     console.log("width " + mapwidth);
+        //     console.log("height " + mapheight);
+        //     $(".datamap" ).remove();
+        //     loadMap();
+        // }
     });
 })
 

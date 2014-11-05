@@ -18,14 +18,23 @@
     <!-- Custom CSS -->
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
+    <!-- Style Related -->
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins/metisMenu/metisMenu.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
     <!-- Visualization Related -->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="js/datamaps.world.min.js"></script>
 
     <!-- Charts JavaScript -->
     <script src="js/asia/age.js"></script>
     <script src="js/asia/gender.js"></script>
     <script src="js/asia/country.js"></script>
     <script src="js/asia/educat.js"></script>
+    <script src="js/asia/map.js"></script>
 
 </head>
 
@@ -89,8 +98,8 @@
                             Education Partners in Asia
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="achart">
+                        <div class="row">
+                            <div class="col-lg-12" id="asiachart" style="width:90%;padding-left:5%;">
                             </div>
                         </div>
                         <!-- /.panel-body -->
@@ -174,11 +183,6 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- Style Related -->
-    <script src="js/jquery.js"></script>
-    <script src="js/plugins/metisMenu/metisMenu.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="js/owcf.js"></script>
