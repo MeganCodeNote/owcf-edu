@@ -43,28 +43,6 @@ $(function() {
         if (typeof drawEducat != 'undefined') {
             drawEducat();
         }
-
-        // // draw map
-        // if (typeof loadMap != 'undefined') {
-        //     var mapwidth = $("#africachart").width();
-        //     var mapheight = width;
-        //     if (mapwidth >= 800) {
-        //         mapheight *= 0.42;
-        //     } else if (mapwidth >= 640) {
-        //         mapheight *= 0.54;
-        //     } else if (mapwidth >= 600){
-        //         mapheight *= 0.80;
-        //     } else {
-        //         mapheight *= 1.0;
-        //     }
-
-        //     $("#africachart").height(mapheight);
-
-        //     console.log("width " + mapwidth);
-        //     console.log("height " + mapheight);
-        //     $(".datamap" ).remove();
-        //     loadMap();
-        // }
     });
 })
 

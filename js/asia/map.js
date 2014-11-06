@@ -34,17 +34,6 @@ function loadMap() {
             'TLS': { fillKey: 'lightpink' },
             'PAK': { fillKey: 'brickgray' },
             'THA': { fillKey: 'sunsetpurple' }
-            // 'EGY': { fillKey: 'lightpurple' },
-            // 'TZA': { fillKey: 'lightpink' },
-            // 'LBY': { fillKey: 'bluegray' },
-            // 'DZA': { fillKey: 'lightyellow' },
-            // 'SSD': { fillKey: 'lightbrown' },
-            // 'SOM': { fillKey: 'tendergreen' },
-            // 'GIB': { fillKey: 'lightcyan' },
-            // 'AGO': { fillKey: 'lightcyan' },
-            // 'COD': { fillKey: 'bluegray'},
-            // 'TCD': { fillKey: 'sunsetpurple' },
-            // 'CAF': { fillKey: 'lightyellow'}
         },
         geographyConfig: {
             highlightFillColor: '#62E9E0'

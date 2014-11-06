@@ -32,23 +32,29 @@ function loadMap() {
         data: {
             'KEN': { fillKey: 'lightpurple' },
             'BFA': { fillKey: 'mintgreen' },
-            'ZWE': { fillKey: 'lightpink' },
-            'UGA': { fillKey: 'brickgray' },
-            'COD': { fillKey: 'bluegray'},
+            'ZWE': { fillKey: 'lightcyan' },
+            'UGA': { fillKey: 'tendergreen' },
+            'COD': { fillKey: 'lightbrown'},
             'TZA': { fillKey: 'lightpink' },
             'ZAF': { fillKey: 'sunsetpurple' },
-            'BWA': { fillKey: 'lightpurple' },
+            'BWA': { fillKey: 'lightyellow' },
             'ZMB': { fillKey: 'bluegray' },
             // 'DZA': { fillKey: 'lightyellow' },
-            // 'SSD': { fillKey: 'lightbrown' },
-            // 'SOM': { fillKey: 'tendergreen' },
-            // 'GIB': { fillKey: 'lightcyan' },
+            // 'SSD': { fillKey: '' },
+            // 'SOM': { fillKey: '' },
+            // 'GIB': { fillKey: '' },
             // 'AGO': { fillKey: 'lightcyan' },
             // 'TCD': { fillKey: 'sunsetpurple' },
-            // 'CAF': { fillKey: 'lightyellow'}
+            // 'CAF': { fillKey: ''}
         },
         geographyConfig: {
             highlightFillColor: '#62E9E0'
+        },
+
+        done: function(datamap) {
+            datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+                alert(geography.properties.name);
+            });
         }
     });
 
@@ -58,11 +64,13 @@ function loadMap() {
         name: 'Castle Bravo',
         radius: 25,
         yeild: 15000,
-        fillKey: 'darkgreen',
+        fillKey: 'highyellow',
         latitude: -23.33,
         longitude: -46.5,
       }])
 }
+
+
 
 // Dealing with window resizing event
 $(window).bind("load resize", function() {
@@ -88,4 +96,6 @@ $(window).bind("load resize", function() {
         loadMap();
     }
 });
+
+
 
