@@ -6,7 +6,7 @@ function loadMap() {
             var projection = d3.geo.equirectangular()
                                .center([120, 2])
                                .rotate([200, -10])
-                               .scale(380)
+                               .scale(350)
                                .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
             var path = d3.geo.path()
                          .projection(projection);
