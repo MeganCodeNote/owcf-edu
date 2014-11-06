@@ -1,9 +1,7 @@
 function loadMap() {
+    // 1. create the africa map
     var map = new Datamap({
         element: document.getElementById('africachart'),
-        fills: {
-            defaultFill: 'rgba(180,210,210,0.9)' //any hex, color name or rgb/rgba value
-        },
         scope: 'world',
         setProjection: function(element) {
             var projection = d3.geo.equirectangular()
@@ -14,13 +12,60 @@ function loadMap() {
             var path = d3.geo.path()
                          .projection(projection);
             return {path: path, projection: projection};
+        },
+        fills: {
+            defaultFill:  'rgba(210,210,210,0.9)', 
+            tendergreen:  'rgba(162, 242, 135, 0.9)', 
+            lightcyan:    'rgba(130, 194, 245, 0.9)',
+            lightyellow:  'rgba(240,230,154,0.5)',
+            lightpink:    'rgba(227,168,166,0.55)',
+            lightpurple:  '#BAAAFF',
+            mintgreen:    '#BCFFAD',
+            lakeblue:     '#62E9E0',
+            brickgray:    '#D9C6B0',
+            sunsetpurple: '#D98CFF',
+            bluegray:     '#CFCEF2',
+            lightbrown:   '#C7B9A6',
+            highyellow:   '#FFFE61',
+            darkgreen:    '#A39C80',
+        },
+        data: {
+            'KEN': { fillKey: 'lightpurple' },
+            'BFA': { fillKey: 'mintgreen' },
+            'ZWE': { fillKey: 'lightpink' },
+            'UGA': { fillKey: 'brickgray' },
+            'COD': { fillKey: 'bluegray'},
+            'TZA': { fillKey: 'lightpink' },
+            'ZAF': { fillKey: 'sunsetpurple' },
+            'BWA': { fillKey: 'lightpurple' },
+            'ZMB': { fillKey: 'bluegray' },
+            // 'DZA': { fillKey: 'lightyellow' },
+            // 'SSD': { fillKey: 'lightbrown' },
+            // 'SOM': { fillKey: 'tendergreen' },
+            // 'GIB': { fillKey: 'lightcyan' },
+            // 'AGO': { fillKey: 'lightcyan' },
+            // 'TCD': { fillKey: 'sunsetpurple' },
+            // 'CAF': { fillKey: 'lightyellow'}
+        },
+        geographyConfig: {
+            highlightFillColor: '#62E9E0'
         }
     });
+
+    // 2. create the africa map
+    map.bubbles([
+      {
+        name: 'Castle Bravo',
+        radius: 25,
+        yeild: 15000,
+        fillKey: 'darkgreen',
+        latitude: -23.33,
+        longitude: -46.5,
+      }])
 }
 
 // Dealing with window resizing event
 $(window).bind("load resize", function() {
-    // draw map
     if (typeof loadMap != 'undefined') {
         var mapwidth = $("#africachart").width();
         var mapheight = mapwidth;
@@ -36,9 +81,10 @@ $(window).bind("load resize", function() {
 
         $("#africachart").height(mapheight);
 
-        console.log("width " + mapwidth);
-        console.log("height " + mapheight);
+        // remove the old chart
         $(".datamap" ).remove();
+
+        // draw the new chart 
         loadMap();
     }
 });
