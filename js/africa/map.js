@@ -5,7 +5,7 @@ function loadMap() {
         scope: 'world',
         setProjection: function(element) {
             var projection = d3.geo.equirectangular()
-                               .center([23, -3])
+                               .center([23, -2])
                                .rotate([4.4, 0])
                                .scale(400)
                                .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
@@ -39,13 +39,6 @@ function loadMap() {
             'ZAF': { fillKey: 'sunsetpurple' },
             'BWA': { fillKey: 'lightyellow' },
             'ZMB': { fillKey: 'bluegray' },
-            // 'DZA': { fillKey: 'lightyellow' },
-            // 'SSD': { fillKey: '' },
-            // 'SOM': { fillKey: '' },
-            // 'GIB': { fillKey: '' },
-            // 'AGO': { fillKey: 'lightcyan' },
-            // 'TCD': { fillKey: 'sunsetpurple' },
-            // 'CAF': { fillKey: ''}
         },
         geographyConfig: {
             highlightFillColor: '#62E9E0'
@@ -59,15 +52,163 @@ function loadMap() {
     });
 
     // 2. create the africa map
+    var radiusNumber = 10;
+    var fillColor = "darkgreen";  
+    var yeildVal = 15000; 
     map.bubbles([
       {
-        name: 'Castle Bravo',
-        radius: 25,
-        yeild: 15000,
-        fillKey: 'highyellow',
-        latitude: -23.33,
-        longitude: -46.5,
-      }])
+        name: 'Akili Dada',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -0.17,
+        longitude: 37.49,
+      },
+      {
+        name: 'ASFOP',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: 12.57,
+        longitude: -2.16,
+      },
+      {
+        name: 'Batsiranai',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -17.51,
+        longitude: 31.1,
+      },
+      {
+        name: 'Bitone Children\'s Center and Troupe',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: 1.08,
+        longitude: 31.34,
+      },
+      {
+        name: 'CAMME (Center to Help Exploited Youth)',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -1.41,
+        longitude: 28.14,
+      },
+      {
+        name: 'El Shadai',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: 0.25,
+        longitude: 34.12,
+      },
+      {
+        name: 'Foot2Afrika',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -4.2,
+        longitude: 37.2,
+      },
+      {
+        name: 'Hlomelikusasa',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -30.55,
+        longitude: 28.58,
+      },
+      {
+        name: 'Ilela and Ngelenge School Committees',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -10.3,
+        longitude: 34.36,
+      },
+      {
+        name: 'Khulani Special School',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -29.31,
+        longitude: 30.53,
+      },
+      {
+        name: 'Kusoma International (LMEF)',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -1.2,
+        longitude: 34.55,
+      },
+      {
+        name: 'Nkomo CBO',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -27.31,
+        longitude: 30.53,
+      },
+      {
+        name: 'PING',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -24.39,
+        longitude: 25.54,
+      },
+      {
+        name: 'Precious Life Foundation',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -20.7,
+        longitude: 28.37,
+      },
+      {
+        name: 'Siyazigabisa Home of Hope',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -26,
+        longitude: 28.12,
+      },
+      {
+        name: 'St Vincent\'s Children of Kibera',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -1.17,
+        longitude: 36.49,
+      },
+      {
+        name: 'Tinga Tinga Secondary School',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -3.22,
+        longitude: 35.41,
+      },
+      {
+        name: 'Tunaweza Fund',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -2.3,
+        longitude: 31.59,
+      },
+      {
+        name: 'Zambian Institute for Sustainable Development',
+        radius: radiusNumber,
+        yeild: yeildVal,
+        fillKey: fillColor,
+        latitude: -15.25,
+        longitude: 28.16,
+      }
+    ])
 }
 
 
@@ -95,7 +236,13 @@ $(window).bind("load resize", function() {
         // draw the new chart 
         loadMap();
     }
+
+    // add click event to the bubbles
+    $(".datamaps-bubble").on('click', function(event) {
+        var data = JSON.parse(this.getAttribute("data-info"));
+        $("#clicktip").remove();
+        $("#link").text(data.name);
+        $("#link").attr("href", "http://www.w3schools.com/jquery");
+        $("#content").text(data.fillKey);
+    });
 });
-
-
-

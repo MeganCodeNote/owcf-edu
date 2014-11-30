@@ -4,9 +4,9 @@ function loadMap() {
         scope: 'world',
         setProjection: function(element) {
             var projection = d3.geo.equirectangular()
-                               .center([120, 2])
+                               .center([105, 2])
                                .rotate([200, -10])
-                               .scale(350)
+                               .scale(270)
                                .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
             var path = d3.geo.path()
                          .projection(projection);
@@ -35,21 +35,93 @@ function loadMap() {
             'USA': { fillKey: 'brickgray' },
             'HTI': { fillKey: 'sunsetpurple'},
             'ARG': { fillKey: 'lightcyan' },
-            'ECU': { fillKey: 'lightyellow' },
-            // 'LBY': { fillKey: 'bluegray' },
-            // 'DZA': { fillKey: 'lightyellow' },
-            // 'SSD': { fillKey: 'lightbrown' },
-            // 'SOM': { fillKey: 'tendergreen' },
-            // 'GIB': { fillKey: 'lightcyan' },
-            // 'AGO': { fillKey: 'lightcyan' },
-            // 'COD': { fillKey: 'bluegray'},
-            // 'TCD': { fillKey: 'sunsetpurple' },
-            // 'CAF': { fillKey: 'lightyellow'}
+            'ECU': { fillKey: 'lightyellow' }
         },
         geographyConfig: {
             highlightFillColor: '#62E9E0'
         }
     });
+
+    // 2. create the africa map
+    
+    var radiusNumber = 10;
+    var fillColor = "darkgreen";
+    var yeildVal = 15000;    
+    
+    map.bubbles([
+        {
+            name: 'Bocas School Project',
+            radius: radiusNumber,
+            yeild: yeildVal,
+            fillKey: fillColor,
+            latitude: 9.19,
+            longitude: -82.15,
+        },
+        {
+            name: 'COMPALCIHT Association',
+            radius: radiusNumber,
+            yeild: yeildVal,
+            fillKey: fillColor,
+            latitude: 11.12,
+            longitude: -86.6,
+        },
+        {
+            name: 'Crea+',
+            radius: radiusNumber,
+            yeild: yeildVal,
+            fillKey: fillColor,
+            latitude: -23.33,
+            longitude: -46.37,
+        },
+        {
+            name: 'FDEGL',
+            radius: radiusNumber,
+            yeild: yeildVal,
+            fillKey: fillColor,
+            latitude: 13.32,
+            longitude: -85.84,
+        },
+        {
+            name: 'Girls to Women',
+            radius: radiusNumber,
+            yeild: yeildVal,
+            fillKey: fillColor,
+            latitude: 37.28,
+            longitude: -122.8,
+        },
+        {
+            name: 'Global Chalkboard Project (Victor Hugo School)',
+            radius: radiusNumber,
+            yeild: yeildVal,
+            fillKey: fillColor,
+            latitude: 19.27,
+            longitude: -72.4,
+        },
+        {
+            name: 'Partners in Development Foundation (PIDF)',
+            radius: radiusNumber,
+            yeild: yeildVal,
+            fillKey: fillColor,
+            latitude: 21.18,
+            longitude: -157.51,
+        },
+        {
+            name: 'P.E.T.I.S.O.S',
+            radius: radiusNumber,
+            yeild: yeildVal,
+            fillKey: fillColor,
+            latitude: -41.8,
+            longitude: -71.18,
+        },
+        {
+            name: 'Tadeo Torres',
+            radius: radiusNumber,
+            yeild: yeildVal,
+            fillKey: fillColor,
+            latitude: -2.54,
+            longitude: -79,
+        }
+    ])
 }
 
 // Dealing with window resizing event
@@ -75,4 +147,11 @@ $(window).bind("load resize", function() {
         // draw the new map
         loadMap();
     }
+
+    // add click event to the bubbles
+    $(".datamaps-bubble").on('click', function(event) {
+        var data = JSON.parse(this.getAttribute("data-info"));
+        console.log(data);
+        console.log(data.latitude);
+    });
 });

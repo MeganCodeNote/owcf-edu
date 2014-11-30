@@ -1,6 +1,7 @@
 // Dealing with window resizing event
 
 $(function() {
+    // show the side menu
     $('#side-menu').metisMenu();
     $(window).bind("load resize", function() {
 
@@ -43,6 +44,17 @@ $(function() {
         if (typeof drawEducat != 'undefined') {
             drawEducat();
         }
+    });
+
+    var dataset;
+    d3.csv("data/data.csv", function(data) {
+        dataset=data
+    });
+    console.log(dataset);
+
+    // if click on datamap, will show details about the organization
+    $('circle').click(function() {
+        alert("hello world");
     });
 })
 
