@@ -45,16 +45,5 @@ $(function() {
             drawEducat();
         }
     });
-
-    var dataset;
-    d3.csv("data/data.csv", function(data) {
-        dataset=data
-    });
-    console.log(dataset);
-
-    // if click on datamap, will show details about the organization
-    $('circle').click(function() {
-        alert("hello world");
-    });
 })
 

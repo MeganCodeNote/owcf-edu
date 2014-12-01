@@ -42,86 +42,32 @@ function loadMap() {
         }
     });
 
-    // 2. create the africa map
-    
+    // get the partner data for shown on the bubbles
     var radiusNumber = 10;
-    var fillColor = "darkgreen";
-    var yeildVal = 15000;    
-    
-    map.bubbles([
-        {
-            name: 'Bocas School Project',
-            radius: radiusNumber,
-            yeild: yeildVal,
-            fillKey: fillColor,
-            latitude: 9.19,
-            longitude: -82.15,
-        },
-        {
-            name: 'COMPALCIHT Association',
-            radius: radiusNumber,
-            yeild: yeildVal,
-            fillKey: fillColor,
-            latitude: 11.12,
-            longitude: -86.6,
-        },
-        {
-            name: 'Crea+',
-            radius: radiusNumber,
-            yeild: yeildVal,
-            fillKey: fillColor,
-            latitude: -23.33,
-            longitude: -46.37,
-        },
-        {
-            name: 'FDEGL',
-            radius: radiusNumber,
-            yeild: yeildVal,
-            fillKey: fillColor,
-            latitude: 13.32,
-            longitude: -85.84,
-        },
-        {
-            name: 'Girls to Women',
-            radius: radiusNumber,
-            yeild: yeildVal,
-            fillKey: fillColor,
-            latitude: 37.28,
-            longitude: -122.8,
-        },
-        {
-            name: 'Global Chalkboard Project (Victor Hugo School)',
-            radius: radiusNumber,
-            yeild: yeildVal,
-            fillKey: fillColor,
-            latitude: 19.27,
-            longitude: -72.4,
-        },
-        {
-            name: 'Partners in Development Foundation (PIDF)',
-            radius: radiusNumber,
-            yeild: yeildVal,
-            fillKey: fillColor,
-            latitude: 21.18,
-            longitude: -157.51,
-        },
-        {
-            name: 'P.E.T.I.S.O.S',
-            radius: radiusNumber,
-            yeild: yeildVal,
-            fillKey: fillColor,
-            latitude: -41.8,
-            longitude: -71.18,
-        },
-        {
-            name: 'Tadeo Torres',
-            radius: radiusNumber,
-            yeild: yeildVal,
-            fillKey: fillColor,
-            latitude: -2.54,
-            longitude: -79,
+    var fillColor = "darkgreen";  
+    var yeildVal = 15000;
+    d3.csv("data/latin/latin-partners.csv", function(error, data) {
+        // reformat data for shown in bubbles
+        for (var i = 0; i < data.length; i++) {
+            data[i]["yeild"] = yeildVal;
+            data[i]["fillKey"] = fillColor;
+            data[i]["radius"] = radiusNumber;            
+            data[i]["latitude"] = parseFloat(data[i]["latitude"]);            
+            data[i]["longitude"] = parseFloat(data[i]["longitude"]);            
         }
-    ])
+
+        // set bubbles for the datamap
+        map.bubbles(data);
+
+        // add click event to the bubbles
+        $(".datamaps-bubble").on('click', function(event) {
+            var data = JSON.parse(this.getAttribute("data-info"));
+            $("#clicktip").remove();
+            $("#link").text(data.name);
+            $("#link").attr("href", data.link);
+            $("#content").text(data.content);
+        });
+    }); 
 }
 
 // Dealing with window resizing event
@@ -140,18 +86,7 @@ $(window).bind("load resize", function() {
             mapheight *= 1.0;
         }
         $("#latinchart").height(mapheight);
-
-        // remove the old map
-        $(".datamap" ).remove();
-
-        // draw the new map
-        loadMap();
-    }
-
-    // add click event to the bubbles
-    $(".datamaps-bubble").on('click', function(event) {
-        var data = JSON.parse(this.getAttribute("data-info"));
-        console.log(data);
-        console.log(data.latitude);
-    });
+        $(".datamap" ).remove();                // remove the old chart
+        loadMap();                              // draw the new chart 
+   }
 });
