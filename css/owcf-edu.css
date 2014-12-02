@@ -394,3 +394,7 @@ table.dataTable thead .sorting:after {
 #link:active {
     color: #FFFF00;
 }
+
+#globalchart {
+    height:700px;
+}
