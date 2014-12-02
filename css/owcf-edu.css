@@ -348,7 +348,11 @@ table.dataTable thead .sorting:after {
     position: absolute;
     width: 40%;
     bottom: 0;
+<<<<<<< HEAD
     height: 22%;
+=======
+    height: 23%;
+>>>>>>> 2a1d1f9b68efce469d344da802cfa3ea65e234b0
     padding: 15px;
 }
 
