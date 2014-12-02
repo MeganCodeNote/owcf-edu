@@ -1,6 +1,17 @@
 google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawDollars);
+
+// the two selected years
+var year1, year2;
+var chart;
+
 function drawDollars() {
+    // define the chart
+    if (typeof chart == 'undefined') {
+        chart = new google.visualization.LineChart(document.getElementById('dollars-chart'));
+    }
+
+    // read in data and draw chart
     d3.text("data/main/dollars.csv", function(error, dollars) {
         // read and reformat the data
         dollars = d3.csv.parseRows(dollars);
@@ -10,8 +21,58 @@ function drawDollars() {
             }
         }
 
+        // add all the years option
+        // remove the old options
+        $("#year1").empty()
+        $("#year2").empty()
+        var years = dollars[0];
+        // add the new options
+        for (var i = 1; i < dollars[0].length; i++) {
+            $("#year1").append('<li><a class="year1">' + dollars[0][i] + '</a></li>')
+            $("#year2").append('<li><a class="year2">' + dollars[0][i] + '</a></li>')
+        }
+
+        // add event for year1 options
+        if (typeof year1 == 'undefined') {
+            year1 = dollars[0].length - 2;  // the sencond to the last year
+        }
+        $(".year1").click(function() {
+            // get the selected year in the first button
+            for (var i = 1; i < years.length; i++) {
+                if (years[i] == "" + this.text) {
+                    year1 = i;
+                }
+            }
+            $("#year1button").text(this.text);
+            drawLineGraph(year1, year2, dollars);
+        })
+
+        // add event for year2 options
+        if (typeof year2 == 'undefined') {
+            year2 = dollars[0].length - 1;  // the sencond to the last year
+        }
+        $(".year2").click(function() {
+            // get the selected year in the second button
+            for (var i = 1; i < years.length; i++) {
+                if (years[i] == "" + this.text) {
+                    year2 = i;
+                }
+            }
+            $("#year2button").text(this.text);
+            drawLineGraph(year1, year2, dollars);
+        })  
+
+        // draw initial graph
+        $("#year1button").text(years[year1]);
+        $("#year2button").text(years[year2]);
+        drawLineGraph(year1, year2, dollars); 
+    })
+}
+
+
+function drawLineGraph(year1, year2, dollars) {
         // selected columns
-        var yearIndices = [0, 1, 2, 3];    
+        var yearIndices = [0, year1, year2];    
         var filteredDollars = [];
         for (var i = 0; i < dollars.length; i++) {
             filteredDollars[i] = [];
@@ -19,7 +80,6 @@ function drawDollars() {
                 filteredDollars[i][j] =  dollars[i][yearIndices[j]]
             }
         }
-        console.log(filteredDollars);
 
         // set the data for the google charts
         var data = google.visualization.arrayToDataTable(filteredDollars);
@@ -37,11 +97,13 @@ function drawDollars() {
             pointSize: 15, 
             curveType: 'function',
             pointShape: 'diamond',
-            series: {0: { color: '#1c91c0' }}
+            series: {0: { color: '#1c91c0' }},
+            animation:{
+                duration: 500,
+                easing: 'out'
+            }
         };
 
         // draw the chart
-        var chart = new google.visualization.LineChart(document.getElementById('dollars-chart'));
         chart.draw(data, options);
-    })
 }
