@@ -63,7 +63,7 @@ function loadMap() {
     });
 
     // get the partner data for shown on the bubbles
-    var radiusNumber = 8;
+    var radiusNumber = 6;
     var fillColor = "darkgreen";  
     var yeildVal = 15000;
     d3.csv("data/global/global-partners.csv", function(error, data) {
